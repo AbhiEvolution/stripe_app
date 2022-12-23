@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-lg-8 shadow my-2 py-2" style="height:fit-content">
+
+        <div class="card">
+            <div class="card-header">
+                <h4> <%=@booking.workshop.name%></h4>
+            </div>
+            <div class="card-body">
+                <h5><%= @booking.customer.full_name%> / <%= @booking.customer.email %> </h5>
+                <h3>Booking Details </h3>
+                <p><strong>NO. Of Tickets:</strong><%= @booking.no_of_tickets %></p>
+                <p><strong>Amount Paid:</strong><%= @booking.amount_paid %></p>
+            </div>
+            <div class="card-footer">
+                <h4>Workshop Schedule</h4>
+                <div>
+                    <h5 class="badge bg-primary fs-6"><%=@booking.workshop.total_duration%></h5>
+                </div>
+                <div>
+                    <h5 class="badge bg-primary fs-6"><%=@booking.workshop.total_time%></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

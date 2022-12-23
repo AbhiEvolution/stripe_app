@@ -1,0 +1,8 @@
+<div class="text-center mt-1">
+    <h1 class="text-primary"> List of workshop</h1>
+</div>
+<div class="row">
+    <%@workshops.each do |workshop|%>
+    <%= render 'workshops/workshop', workshop: workshop %>
+    <%end%>
+</div>

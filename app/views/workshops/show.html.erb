@@ -1,0 +1,69 @@
+<% workshop = @workshop %>
+<div class="row">
+    <div class="col-lg-8 shadow my-2 py-2" style="height:fit-content">
+        <h4> <%= workshop.name%></h4>
+        <div class="row">
+            <div class="col-8">
+                <p class="lead"><%= workshop.description %> </p>
+            </div>
+            <div class="col-4">
+                <div>
+                    <h5 class="badge bg-primary fs-6">Total Seats: <%=workshop.total_seats%></h5>
+                </div>
+                <div>
+                    <h5 class="badge bg-primary fs-6">Remaining Seats: <%=workshop.remaining_seats%></h5>
+                </div>
+                <div>
+                    <h5 class="badge bg-primary fs-6">Registration Fee: <%=workshop.registration_fee%></h5>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h5 class="badge bg-primary fs-6"><%=workshop.total_duration%></h5>
+        </div>
+        <div>
+            <h5 class="badge bg-primary fs-6"><%=workshop.total_time%></h5>
+        </div>
+        <%= link_to 'Back to Workshops', workshops_path , class:'btn btn-outline-danger'%>
+    </div>
+    <div class="col-lg-3 shadow my-2 py-2 ms-1">
+        <h4 class="text-center">Reserve Your Seats Now</h4>
+        <%= form_with  url:  :bookings , data: {turbo: false}  do |form| %>
+        <%= form.hidden_field :workshop_id, value: workshop.id %>
+        <strong>Full Name</strong>
+        <%= form.text_field :full_name, class:'form-control', require:true%>
+        <br>
+        <strong>Email</strong>
+        <%= form.email_field :email, class:'form-control', require:true%>
+        <br>
+        <strong>Contact Number</strong>
+        <%= form.telephone_field :contact_number, class:'form-control', require:true%>
+        <br>
+        <strong>Number of Tickets</strong>
+        <%= form.number_field :no_of_tickets, class:'form-control', require:true,  min:1, max:workshop.remaining_seats %>
+        <br>
+        <div class="text-center fs-5 fw-bold"> Card Details </div>
+        <hr class="text-warning p-1">
+        <strong>Card Number</strong>
+        <%= form.number_field :card_number, class:'form-control', require:true%>
+        <div class="row mt-2 ">
+            <div class="col-4 text-center ">
+                <strong>CVV</strong>
+                <%= form.telephone_field :cvv_number, class:'form-control', require:true%>
+            </div>
+            <div class="col-4 text-center">
+                <strong>Month</strong>
+                <%= form.number_field :exp_month, class:'form-control', require:true%>
+            </div>
+            <div class="col-4 text-center">
+                <strong>Year</strong>
+                <%=  form.number_field :exp_year, class:'form-control', require:true%>
+            </div>
+        </div>
+        <br>
+        <div class="text-center d-grid ">
+        <%=form.submit 'Book your Tickets', class:'btn btn-outline-danger' %>
+        </div>
+        <%end%>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="col-lg-6 shadow my-2 py-2">
+    <h4> <%= workshop.name%></h4>
+    <%  if params[:controller] == "workshops" && params[:action] == "index" %>
+    <p class="lead"><%= truncate(workshop.description, length:50)%> </p>
+    <% else %>
+    <div class="row">
+        <div class="col-8">
+            <p class="lead"><%= workshop.description %> </p>
+        </div>
+        <div class="col-4">
+            <div>
+                <h5 class="badge bg-primary fs-6">Total Seats: <%=workshop.total_seats%></h5>
+            </div>
+            <div>
+                <h5 class="badge bg-primary fs-6">Remaining Seats: <%=workshop.remaining_seats%></h5>
+            </div>
+            <div>
+                <h5 class="badge bg-primary fs-6">Registration Fee: <%=workshop.registration_fee%></h5>
+            </div>
+        </div>
+    </div>
+    <% end%>
+    <div>
+        <h5 class="badge bg-primary fs-6"><%=workshop.total_duration%></h5>
+    </div>
+    <div>
+        <h5 class="badge bg-primary fs-6"><%=workshop.total_time%></h5>
+    </div>
+    <%= workshop_link(workshop) %>
+</div>
